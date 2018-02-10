@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">NetApiDemo</string>
+
+    <string name="form_request">表单请求</string>
+    <string name="get_noparams">get无参请求</string>
+    <string name="get_path">get_path参数请求</string>
+    <string name="get_query">get_query参数请求</string>
+    <string name="get_querymap">get_queryMap请求</string>
+    <string name="get_static_header">get_静态请求头添加</string>
+    <string name="get_change_header">get_动态请求头添加</string>
+    <string name="get_interceptor_header">get_拦截器请求头添加</string>
+    <string name="get_body">get_body参数请求</string>
+    <string name="get_url">get_url参数请求</string>
+    <string name="post_streaming">下载文件请求（get,post）</string>
+    <string name="post_multipart">上传文件请求</string>
+    <string name="netconfig_use">配合网络请求配置使用</string>
+    <string name="application_init_default">使用前初始化默认的baseUrl</string>
+    <string name="https_sslsocket">https证书验证请求</string>
+    <string name="wait_add">待补充</string>
+</resources>

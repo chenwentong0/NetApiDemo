@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/form_request"
+            style="@style/nomal_buttom"
+            android:text="@string/form_request"
+            />
+
+        <Button
+            android:id="@+id/get_noparams"
+            style="@style/nomal_buttom"
+            android:text="@string/get_noparams"
+            />
+
+        <Button
+            android:id="@+id/get_path"
+            style="@style/nomal_buttom"
+            android:text="@string/get_path"
+            />
+
+        <Button
+            android:id="@+id/get_query"
+            style="@style/nomal_buttom"
+            android:text="@string/get_query"
+            />
+
+        <Button
+            android:id="@+id/get_querymap"
+            style="@style/nomal_buttom"
+            android:text="@string/get_querymap"
+            />
+
+        <Button
+            android:id="@+id/get_static_header"
+            style="@style/nomal_buttom"
+            android:text="@string/get_static_header"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/get_change_header"
+            style="@style/nomal_buttom"
+            android:text="@string/get_change_header"
+            />
+
+        <Button
+            android:id="@+id/get_interceptor_header"
+            style="@style/nomal_buttom"
+            android:text="@string/get_interceptor_header"
+            />
+
+        <Button
+            android:id="@+id/get_body"
+            style="@style/nomal_buttom"
+            android:text="@string/get_body"
+            />
+
+        <Button
+            android:id="@+id/get_url"
+            style="@style/nomal_buttom"
+            android:text="@string/get_url"
+            />
+
+        <Button
+            android:id="@+id/post_streaming"
+            style="@style/nomal_buttom"
+            android:text="@string/post_streaming"
+            />
+
+        <Button
+            android:id="@+id/post_multipart"
+            style="@style/nomal_buttom"
+            android:text="@string/post_multipart"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/netconfig_use"
+            style="@style/nomal_buttom"
+            android:text="@string/netconfig_use"
+            />
+
+        <Button
+            android:id="@+id/application_init_default"
+            style="@style/nomal_buttom"
+            android:text="@string/application_init_default"
+            />
+
+        <Button
+            android:id="@+id/https_sslsocket"
+            style="@style/nomal_buttom"
+            android:text="@string/https_sslsocket"
+            />
+
+        <Button
+            android:id="@+id/wait_add"
+            style="@style/nomal_buttom"
+            android:text="@string/wait_add"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
