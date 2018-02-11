@@ -19,7 +19,7 @@ public class MyApplication extends Application {
         super.onCreate();
         mInstance = this;
         //设置网路请求中默认的baseUrl和默认的Service
-        NetGlobalConfig.getInstance().setBaseUrl(TvNetService.baseUrl)
+        NetGlobalConfig.getInstance().setBaseUrl(TvNetService.BASE_URL)
                 .setNetServiceClass(TvNetService.class);
     }
 

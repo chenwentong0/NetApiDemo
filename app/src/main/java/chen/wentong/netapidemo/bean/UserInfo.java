@@ -4,18 +4,12 @@ import java.io.Serializable;
 
 /**
  * Created by ${wentong.chen} on 18/1/24.
+ * 用户信息
  */
-
 public class UserInfo implements Serializable{
-    private final int id;
-    private final String login;
-    private final String avatar_url;
-
-    public UserInfo(int id, String login, String avatar_url) {
-        this.id = id;
-        this.login = login;
-        this.avatar_url = avatar_url;
-    }
+    private int id;
+    private String login;
+    private String avatar_url;
 
     public String getAvatarUrl() {
         if (avatar_url.isEmpty()) return avatar_url;

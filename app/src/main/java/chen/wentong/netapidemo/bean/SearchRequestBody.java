@@ -1,5 +1,8 @@
 package chen.wentong.netapidemo.bean;
 
+/**
+ * 搜索请求体
+ */
 public class SearchRequestBody {
 
     private String v = "3.0.1";
@@ -10,7 +13,12 @@ public class SearchRequestBody {
 
     private P p;
 
-    public static SearchRequestBody getInstance(P p){
+    /**
+     * 获取p
+     * @param p 包装的请求体
+     * @return 请求体
+     */
+    public static SearchRequestBody getInstance(P p) {
         return new SearchRequestBody(p);
     }
 

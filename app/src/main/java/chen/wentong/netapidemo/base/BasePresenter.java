@@ -5,8 +5,13 @@ import android.arch.lifecycle.Lifecycle;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
 
+/**
+ * BasePresenter
+ * create by wentong.chen 2018.2.11
+ * @param <T> baseView
+ */
 public abstract  class BasePresenter<T extends IBaseView> {
-    public final String TAG = getClass().getSimpleName();
+    protected final String TAG = getClass().getSimpleName();
 
     /**
      * 绑定生命周期请求请加上.compose(provider.bindToLifecycle())
@@ -19,20 +24,10 @@ public abstract  class BasePresenter<T extends IBaseView> {
         this.mView = view;
     }
 
+    /**
+     * 销毁方法
+     */
     public void onDestroy() {
         mView = null;
     }
-
-
-//    /**
-//     * 耗时请求绑定生命周期
-//     * @param observable
-//     * @param <T>
-//     * @return
-//     */
-//    public <T> Observable<T> bindLifeCycle(Observable<T> observable) {
-//        return observable
-//                .compose(mProvider.bindToLifecycle());
-//
-//    }
 }

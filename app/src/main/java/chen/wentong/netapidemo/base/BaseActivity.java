@@ -16,8 +16,7 @@ import butterknife.ButterKnife;
  */
 
 public class BaseActivity extends RxLifeActivity implements IBaseView{
-
-    public final String TAG = getClass().getSimpleName();
+    protected final String TAG = getClass().getSimpleName();
     //生命周期绑定 Rxjava中 compose（mLifecycleProvider.bindToLifecycle()）
     protected final LifecycleProvider<Lifecycle.Event> mLifecycleProvider
             = AndroidLifecycle.createLifecycleProvider(this);
@@ -29,10 +28,5 @@ public class BaseActivity extends RxLifeActivity implements IBaseView{
 
     public void showLongToast(CharSequence toast) {
         Toast.makeText(this, toast, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void setPresenter(BasePresenter<? extends IBaseView> basePresenter) {
-
     }
 }

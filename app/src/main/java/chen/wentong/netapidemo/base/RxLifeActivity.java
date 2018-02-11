@@ -20,8 +20,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * Created by wentong.chen on 18/1/25.
  * 功能：生命周期绑定
  */
-
-public class RxLifeActivity extends AppCompatActivity implements LifecycleProvider<ActivityEvent>{
+public class RxLifeActivity extends AppCompatActivity implements LifecycleProvider<ActivityEvent> {
 
     private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
 

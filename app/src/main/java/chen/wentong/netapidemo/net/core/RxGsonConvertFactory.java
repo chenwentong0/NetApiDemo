@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 
@@ -26,22 +25,30 @@ import retrofit2.Retrofit;
 
 /**
  * Created by wentong.chen on 18/2/9.
- * 功能：
+ * 功能：自定义网络请求requestBody， responseBody转换
  */
+public final class RxGsonConvertFactory extends Converter.Factory {
+    private final Gson gson;
 
-public class RxGsonConvertFactory extends Converter.Factory {
-
+    /**
+     *  生成一个RxGsonConvertFactory
+     * @return RxGsonConvertFactory
+     */
     public static RxGsonConvertFactory create() {
         return create(new Gson());
     }
 
-    @SuppressWarnings("ConstantConditions")
+    /**
+     * 生成一个RxGsonConvertFactory
+     * @param gson gosn对象
+     * @return RxGsonConvertFactory
+     */
     public static RxGsonConvertFactory create(Gson gson) {
-        if (gson == null) throw new NullPointerException("gson == null");
+        if (gson == null) {
+            throw new NullPointerException("gson == null");
+        }
         return new RxGsonConvertFactory(gson);
     }
-
-    private final Gson gson;
 
     private RxGsonConvertFactory(Gson gson) {
         this.gson = gson;
@@ -55,7 +62,9 @@ public class RxGsonConvertFactory extends Converter.Factory {
 
     @Override
     public Converter<?, RequestBody> requestBodyConverter(Type type,
-                                                          Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+                                                          Annotation[] parameterAnnotations,
+                                                          Annotation[] methodAnnotations,
+                                                          Retrofit retrofit) {
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new MyGsonRequestBodyConverter<>(gson, adapter);
     }
@@ -64,7 +73,7 @@ public class RxGsonConvertFactory extends Converter.Factory {
      * 请求体转换
      * @param <T> 转换实体对象
      */
-    static class MyGsonRequestBodyConverter<T> implements Converter<T, RequestBody>{
+    static class MyGsonRequestBodyConverter<T> implements Converter<T, RequestBody> {
         private static final MediaType MEDIA_TYPE = MediaType.parse("application/json; charset=UTF-8");
         private static final Charset UTF_8 = Charset.forName("UTF-8");
 
@@ -89,7 +98,7 @@ public class RxGsonConvertFactory extends Converter.Factory {
      * 响应转换
      * @param <T> 转换实体对象
      */
-    static class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T>{
+    static class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         private final Gson gson;
         private final Type type;
 
@@ -100,33 +109,29 @@ public class RxGsonConvertFactory extends Converter.Factory {
 
         @Override
         public T convert(ResponseBody responseBody) throws IOException {
+            T t = null;
             String value = responseBody.string();
-            if (type instanceof Class) {
-                if (type == String.class) {
-                    return (T) value;
-                }
-            } else if (type instanceof ParameterizedType) {
-                if (((ParameterizedType) type).getRawType() == String.class) {
-                    return (T) value;
-                }
-                if (((ParameterizedType) type).getRawType() == JSONObject.class) {
-                    try {
-                        return (T) new JSONObject(value);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        return (T) value;
-                    }
-                }
-                if (((ParameterizedType) type).getRawType() == JSONArray.class) {
-                    try {
-                        return (T) new JSONArray(value);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        return (T) value;
-                    }
+            if (type == String.class) {
+                t = (T) value;
+            }
+            if (type == JSONObject.class) {
+                try {
+                    t = (T) new JSONObject(value);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
             }
-            return gson.fromJson(value, type);
+            if (type == JSONArray.class) {
+                try {
+                    t = (T) new JSONArray(value);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (t == null) {
+                t = gson.fromJson(value, type);
+            }
+            return t;
         }
     }
 }

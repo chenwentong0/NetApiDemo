@@ -4,10 +4,9 @@ import chen.wentong.netapidemo.bean.LocationInfo;
 
 /**
  * Created by wentong.chen on 18/2/10.
- * 功能：
+ * 功能：数据管理类
  */
-
-public class DataManager {
+public final class DataManager {
     private static DataManager sDataManager = new DataManager();
     private LocationInfo mLocationInfo;
     private DataManager() {
@@ -18,6 +17,10 @@ public class DataManager {
         return sDataManager;
     }
 
+    /**
+     * 获取此时的定位信息
+     * @return 定位信息
+     */
     public LocationInfo getLocationInfo() {
         if (mLocationInfo == null) {
             mLocationInfo = new LocationInfo();

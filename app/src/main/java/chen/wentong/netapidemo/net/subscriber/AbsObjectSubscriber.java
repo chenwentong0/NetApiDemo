@@ -10,13 +10,13 @@ import io.reactivex.disposables.Disposable;
 /**
  * Created by wentong.chen on 18/1/17.
  *  Rxjava订阅者的二次封装
+ *  @param <T> JSON数据转换目标对象类型
  */
-
 public abstract class AbsObjectSubscriber<T> implements Observer<T> {
 
     @Override
     public void onSubscribe(Disposable d) {
-        LogUtils.d( "onSubscribe: ");
+        LogUtils.d("onSubscribe: ");
     }
 
     @Override
@@ -39,7 +39,7 @@ public abstract class AbsObjectSubscriber<T> implements Observer<T> {
 
     /**
      * 请求失败回调
-     * @param e
+     * @param e 错误
      */
     public abstract void onFailure(Throwable e);
 

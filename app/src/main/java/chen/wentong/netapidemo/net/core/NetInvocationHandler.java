@@ -20,6 +20,14 @@ public final class NetInvocationHandler<T> implements InvocationHandler {
         this.actualService = var1;
     }
 
+    /**
+     * 代理对象的代理方法做线程指定处理
+     * @param proxy 代理的对象
+     * @param method 代理的方法
+     * @param args 代理方法参数
+     * @return 代理对象
+     * @throws Throwable 异常
+     */
     public Object invoke(Object proxy, Method method, Object... args) throws Throwable {
         Object result = method.invoke(this.actualService, args);
         if (result != null && result instanceof Observable) {

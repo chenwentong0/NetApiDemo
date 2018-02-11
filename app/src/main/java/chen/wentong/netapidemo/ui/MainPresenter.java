@@ -23,226 +23,226 @@ public class MainPresenter extends BasePresenter implements IMainContract.Presen
     }
 
     @Override
-    public void 表单请求() {
-        mMainModel.表单请求()
+    public void formRequest() {
+        mMainModel.formRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        mView.showData("表单请求 成功 " + response.toString());
+                        mView.showData("formRequest 成功 " + response.toString());
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("表单请求 失败 " + e.getMessage());
+                        mView.showData("formRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get无参请求() {
-        mMainModel.get无参请求()
+    public void noParamsRequest() {
+        mMainModel.noParamsRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
 
                     @Override
                     public void onSuccess(String response) {
-                        mView.showData("get无参请求 成功 " + response);
+                        mView.showData("noParamsRequest 成功 " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get无参请求 失败 " + e.getMessage());
+                        mView.showData("noParamsRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get_path参数请求() {
-        mMainModel.get_path参数请求()
+    public void pathParamsRequest() {
+        mMainModel.pathParamsRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        mView.showData("get_path参数请求 成功 " + response);
+                        mView.showData("pathParamsRequest 成功 " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_path参数请求 失败 " + e.getMessage());
+                        mView.showData("pathParamsRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get_query参数请求() {
-        mMainModel.get_query参数请求()
+    public void queryParamsRequest() {
+        mMainModel.queryParamsRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        mView.showData("get_query参数请求 成功 " + response);
+                        mView.showData("queryParamsRequest 成功 " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_query参数请求 失败 " + e.getMessage());
+                        mView.showData("queryParamsRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get_queryMap请求() {
-        mMainModel.get_queryMap请求()
+    public void queryMapRequest() {
+        mMainModel.queryMapRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        mView.showData("get_queryMap请求 成功 " + response);
+                        mView.showData("queryMapRequest 成功 " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_queryMap请求 失败 " + e.getMessage());
+                        mView.showData("queryMapRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get_静态请求头添加() {
-        mMainModel.get_静态请求头添加()
+    public void staticHeaderRequest() {
+        mMainModel.staticHeaderRequest()
                 .subscribe(new AbsObjectSubscriber<UserInfo>() {
                     @Override
                     public void onSuccess(UserInfo response) {
-                        mView.showData("get_静态请求头添加 成功 " + response.toString());
+                        mView.showData("staticHeaderRequest 成功 " + response.toString());
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_静态请求头添加 失败 " + e.getMessage());
+                        mView.showData("staticHeaderRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get_动态请求头添加() {
-        mMainModel.get_动态请求头添加()
+    public void changeHeaderRequest() {
+        mMainModel.changeHeaderRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        mView.showData("get_动态请求头添加 成功 " + response);
+                        mView.showData("changeHeaderRequest 成功 " + response);
                     }
 
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_动态请求头添加 失败 " + e.getMessage());
+                        mView.showData("changeHeaderRequest 失败 " + e.getMessage());
                     }
                 });
     }
 
     @Override
-    public void get_拦截器请求头添加() {
-        mMainModel.get_拦截器请求头添加()
+    public void interceptorRequest() {
+        mMainModel.interceptorRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_拦截器请求头添加 失败 " + e.getMessage());
+                        mView.showData("interceptorRequest 失败 " + e.getMessage());
                     }
 
                     @Override
                     public void onSuccess(String s) {
-                        mView.showData("get_拦截器请求头添加 成功 " + s.toString());
+                        mView.showData("interceptorRequest 成功 " + s.toString());
                     }
                 });
     }
 
     @Override
-    public void get_body参数请求() {
-        mMainModel.get_body参数请求()
+    public void bodyRequest() {
+        mMainModel.bodyRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_body参数请求 失败 " + e.getMessage());
+                        mView.showData("bodyRequest 失败 " + e.getMessage());
                     }
 
                     @Override
                     public void onSuccess(String s) {
-                        mView.showData("get_body参数请求 成功 " + s.toString());
+                        mView.showData("bodyRequest 成功 " + s.toString());
                     }
                 });
     }
 
     @Override
-    public void get_url参数请求() {
-        mMainModel.get_url参数请求()
+    public void urlRequest() {
+        mMainModel.urlRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("get_url参数请求 失败 " + e.getMessage());
+                        mView.showData("urlRequest 失败 " + e.getMessage());
                     }
 
                     @Override
                     public void onSuccess(String s) {
-                        mView.showData("get_url参数请求 成功 " + s.toString());
+                        mView.showData("urlRequest 成功 " + s.toString());
                     }
                 });
     }
 
     @Override
-    public void 下载文件请求() {
-        mMainModel.get_path参数请求()
+    public void downloadFile() {
+        mMainModel.pathParamsRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("下载文件请求 失败 " + e.getMessage());
+                        mView.showData("downloadFile 失败 " + e.getMessage());
                     }
 
                     @Override
                     public void onSuccess(String s) {
-                        mView.showData("下载文件请求 成功 " + s.toString());
+                        mView.showData("downloadFile 成功 " + s.toString());
                     }
                 });
     }
 
     @Override
-    public void 上传文件请求() {
-        mMainModel.get_path参数请求()
+    public void uploadFileRequest() {
+        mMainModel.pathParamsRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("上传文件请求 失败 " + e.getMessage());
+                        mView.showData("uploadFileRequest 失败 " + e.getMessage());
                     }
 
                     @Override
                     public void onSuccess(String s) {
-                        mView.showData("上传文件请求 成功 " + s.toString());
+                        mView.showData("uploadFileRequest 成功 " + s.toString());
                     }
                 });
     }
 
     @Override
-    public void 配合网络请求配置使用() {
-        mMainModel.get_path参数请求()
+    public void netRequestSet() {
+        mMainModel.pathParamsRequest()
                 .subscribe(new AbsObjectSubscriber<String>() {
                     @Override
                     public void onFailure(Throwable e) {
-                        mView.showData("配合网络请求配置使用 失败 " + e.getMessage());
+                        mView.showData("netRequestSet 失败 " + e.getMessage());
                     }
 
                     @Override
                     public void onSuccess(String s) {
-                        mView.showData("配合网络请求配置使用 成功 " + s.toString());
+                        mView.showData("netRequestSet 成功 " + s.toString());
                     }
                 });
     }
 
     @Override
-    public void 使用前初始化默认的baseUrl() {
+    public void useDefaultBaseurl() {
 
     }
 
     @Override
-    public void https证书验证请求() {
+    public void httpsRequest() {
 
     }
 
     @Override
-    public void 待补充() {
+    public void waitAdd() {
 
     }
 }

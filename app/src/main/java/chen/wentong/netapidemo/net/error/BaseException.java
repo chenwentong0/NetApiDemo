@@ -4,7 +4,6 @@ package chen.wentong.netapidemo.net.error;
  * Created by wentong.chen on 18/1/26.
  * 功能：网络异常基类
  */
-
 public class BaseException extends Exception {
     private int code;
     private String message;
@@ -24,7 +23,7 @@ public class BaseException extends Exception {
 
     /**
      * 获取的错误信息
-     * @return
+     * @return 错误信息
      */
     @Override
     public String getMessage() {
@@ -33,7 +32,7 @@ public class BaseException extends Exception {
 
     /**
      * 获取错误码
-     * @return
+     * @return 错误码
      */
     public int getCode() {
        return code;

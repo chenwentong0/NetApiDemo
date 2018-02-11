@@ -3,12 +3,12 @@ package chen.wentong.netapidemo.net.subscriber;
 /**
  * Created by ${wentong.chen} on 18/1/23.
  * 数据返回样式
- * @param <T>
+ * @param <T> 转换的bean类型
  */
 public class ResponseBaseModel<T> {
-    public String ret;
-    public String msg;
-    public T info;
+    private String ret;
+    private String msg;
+    private T info;
 
     public String getRet() {
         return ret;

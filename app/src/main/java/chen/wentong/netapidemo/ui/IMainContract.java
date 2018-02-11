@@ -1,86 +1,205 @@
 package chen.wentong.netapidemo.ui;
 
-import org.json.JSONObject;
-
-import chen.wentong.netapidemo.bean.UserInfo;
-import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
 /**
  * Created by wentong.chen on 18/2/8.
  * 功能：
  */
-
 public interface IMainContract {
+    /**
+     * 数据处理后回调给ui的更新
+     */
     interface View {
+        /**
+         * 显示网络加载回的信息
+         * @param data 数据
+         */
         void showData(String data);
     }
 
+    /**
+     * 请求数据回来后的业务回调
+     */
     interface Presenter {
-        void 表单请求();
+        /**
+         * formRequest
+         */
+        void formRequest();
 
-        void get无参请求();
+        /**
+         * 无参数请求
+         */
+        void noParamsRequest();
 
-        void get_path参数请求();
+        /**
+         * path 参数请求
+         */
+        void pathParamsRequest();
 
-        void get_query参数请求();
+        /**
+         * query请求
+         */
+        void queryParamsRequest();
 
-        void get_queryMap请求();
+        /**
+         * queryMap请求
+         */
+        void queryMapRequest();
 
-        void get_静态请求头添加();
+        /**
+         * 静态请求头添加
+         */
+        void staticHeaderRequest();
 
-        void get_动态请求头添加();
+        /**
+         * 动态请求头添加
+         */
+        void changeHeaderRequest();
 
-        void get_拦截器请求头添加();
+        /**
+         * 拦截器请求头添加
+         */
+        void interceptorRequest();
 
-        void get_body参数请求();
+        /**
+         * body参数请求
+         */
+        void bodyRequest();
 
-        void get_url参数请求();
+        /**
+         * urlRequest
+         */
+        void urlRequest();
 
-        void 下载文件请求();
+        /**
+         * downloadFile
+         */
+        void downloadFile();
 
-        void 上传文件请求();
+        /**
+         * uploadFileRequest
+         */
+        void uploadFileRequest();
 
-        void 配合网络请求配置使用();
+        /**
+         * netRequestSet
+         */
+        void netRequestSet();
 
-        void 使用前初始化默认的baseUrl();
+        /**
+         * useDefaultBaseurl
+         */
+        void useDefaultBaseurl();
 
-        void https证书验证请求();
+        /**
+         * httpsRequest
+         */
+        void httpsRequest();
 
-        void 待补充();
+        /**
+         * waitAdd
+         */
+        void waitAdd();
     }
 
+    /**
+     * 请求数据model
+     */
     interface Model {
-        Observable 表单请求();
+        /**
+         * formRequest
+         * @return 数据主题
+         */
+        Observable formRequest();
+        /**
+         * 无参数请求
+         * @return 数据主题
+         */
+        Observable noParamsRequest();
 
-        Observable get无参请求();
+        /**
+         * path参数请求
+         * @return 数据主题
+         */
+        Observable pathParamsRequest();
 
-        Observable get_path参数请求();
+        /**
+         * query参数请求
+         * @return 数据主题
+         */
+        Observable queryParamsRequest();
 
-        Observable get_query参数请求();
+        /**
+         * queryMap参数请求
+         * @return 数据主题
+         */
+        Observable queryMapRequest();
 
-        Observable get_queryMap请求();
+        /**
+         * 静态请求头添加
+         * @return 数据主题
+         */
+        Observable staticHeaderRequest();
 
-        Observable get_静态请求头添加();
+        /**
+         * 动态请求头添加
+         * @return 数据主题
+         */
+        Observable changeHeaderRequest();
 
-        Observable get_动态请求头添加();
+        /**
+         * 拦截器请求头添加
+         * @return 数据主题
+         */
+        Observable interceptorRequest();
 
-        Observable get_拦截器请求头添加();
+        /**
+         * body请求
+         * @return 数据主题
+         */
+        Observable bodyRequest();
 
-        Observable get_body参数请求();
+        /**
+         * url参数请求
+         * @return 数据主题
+         */
+        Observable urlRequest();
 
-        Observable get_url参数请求();
+        /**
+         * downloadFile
+         * @return 数据主题
+         */
+        Observable downloadFile();
 
-        Observable 下载文件请求();
+        /**
+         * uploadFile
+         * @return 成功失败返回的数据
+         */
+        Observable uploadFile();
 
-        Observable 上传文件请求();
+        /**
+         * 网络请求配置使用
+         * @return 数据主题
+         */
+        Observable netRequestSet();
 
-        Observable 配合网络请求配置使用();
+        /**
+         * 使用默认配置的网络请求api
+         * @return 数据主题
+         */
+        Observable useDefaultBaseurl();
 
-        Observable 使用前初始化默认的baseUrl();
+        /**
+         * https请求
+         * @return 数据主题
+         */
+        Observable httpsRequest();
 
-        Observable https证书验证请求();
-
-        Observable 待补充();
+        /**
+         * 等待补充
+         * @return 数据主题
+         */
+        Observable waitAdd();
     }
 }

@@ -14,10 +14,10 @@ import chen.wentong.netapidemo.bean.P;
 import chen.wentong.netapidemo.bean.SearchRequestBody;
 import chen.wentong.netapidemo.net.api.NetService;
 import chen.wentong.netapidemo.net.api.TvNetService;
+import chen.wentong.netapidemo.net.core.MySslContextFactory;
 import chen.wentong.netapidemo.net.core.NetConstants;
 import chen.wentong.netapidemo.net.core.NetGlobalConfig;
 import chen.wentong.netapidemo.net.core.NetUtil;
-import chen.wentong.netapidemo.net.core.SslContextFactory;
 import io.reactivex.Observable;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -29,7 +29,6 @@ import okhttp3.ResponseBody;
  * Created by wentong.chen on 18/2/8.
  * 功能：
  */
-
 public class MainModel extends BaseModel implements IMainContract.Model {
     private final TvNetService mTvNetService;
     private final NetService mUserService;
@@ -37,7 +36,7 @@ public class MainModel extends BaseModel implements IMainContract.Model {
     public MainModel(LifecycleProvider<Lifecycle.Event> provider) {
         super(provider);
         mTvNetService = NetUtil.getInstance()
-                .setBaseUrl(TvNetService.baseUrl)
+                .setBaseUrl(TvNetService.BASE_URL)
                 //设置超时时间
                 .setConnectTimeout(NetConstants.DEFAULT_TIMEOUT)
                 .setReadTimeout(NetConstants.DEFAULT_TIMEOUT)
@@ -45,105 +44,105 @@ public class MainModel extends BaseModel implements IMainContract.Model {
                 .setServiceClass(TvNetService.class)
                 .build();
         mUserService = NetUtil.getInstance()
-                .setBaseUrl(NetService.githubBaseUrl)
+                .setBaseUrl(NetService.GITHUB_BASEURL)
                 .setServiceClass(NetService.class)
                 .build();
     }
 
     @Override
-    public Observable 表单请求() {
+    public Observable formRequest() {
         Map<String, String> map = new HashMap<>();
         map.put("header", "header");
         map.put("header", "header");
         map.put("ver", "4");
-        return mTvNetService.表单请求(map)
+        return mTvNetService.formRequest(map)
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get无参请求() {
-        return mTvNetService.get无参请求()
+    public Observable noParamsRequest() {
+        return mTvNetService.noParamsRequest()
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_path参数请求() {
-        return mTvNetService.get_path参数请求("index", "recommend")
+    public Observable pathParamsRequest() {
+        return mTvNetService.pathRequest("index", "recommend")
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_query参数请求() {
-        return mTvNetService.get_query参数请求("1", "4")
+    public Observable queryParamsRequest() {
+        return mTvNetService.queryRequest("1", "4")
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_queryMap请求() {
+    public Observable queryMapRequest() {
         Map<String, String> map = new HashMap<>();
 //        ?v=3.0.1&os=1&ver=4
         map.put("os", "1");
         map.put("ver", "4");
-        return mTvNetService.get_queryMap请求( map)
+        return mTvNetService.queryMapRequest(map)
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_静态请求头添加() {
+    public Observable staticHeaderRequest() {
         return mUserService
-                .get_静态请求头添加("test")
+                .staticHeaderRequest("test")
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_动态请求头添加() {
-        return mTvNetService.get_动态请求头添加("os")
+    public Observable changeHeaderRequest() {
+        return mTvNetService.changeHeaderRequest("os")
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_拦截器请求头添加() {
-        return ((TvNetService)(NetUtil.getInstance()
-                .setBaseUrl(TvNetService.baseUrl)
+    public Observable interceptorRequest() {
+        TvNetService tvNetService = NetUtil.getInstance()
+                .setBaseUrl(TvNetService.BASE_URL)
                 .setServiceClass(TvNetService.class)
                 //添加定位信息请求头
                 .setToggleLocationHeader(true)
-                .build()))
-                .get_拦截器请求头添加();
+                .build();
+        return tvNetService.interceptorRequest();
     }
 
     @Override
-    public Observable get_body参数请求() {
+    public Observable bodyRequest() {
         SearchRequestBody searchRequestBody = new SearchRequestBody();
         P p = new P();
         searchRequestBody.setP(p);
-        return mTvNetService.get_body参数请求(searchRequestBody)
+        return mTvNetService.bodyParamsRequest(searchRequestBody)
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable get_url参数请求() {
-        return mTvNetService.get_url参数请求("json/rooms/1/info.json?v=3.0.1&os=1&ver=4")
+    public Observable urlRequest() {
+        return mTvNetService.urlParamsRequest("json/rooms/1/info.json?v=3.0.1&os=1&ver=4")
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable 下载文件请求() {
-        return mUserService.下载文件请求("下载文件")
+    public Observable downloadFile() {
+        return mUserService.downloadFile("下载文件")
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable 上传文件请求() {
+    public Observable uploadFile() {
         HashMap<String, Object> map = new HashMap<>();
-        return mUserService.上传文件请求(map, new File("chen/wentong/netapidemo/test.txt"))
+        return mUserService.uploadFile(map, new File("chen/wentong/netapidemo/test.txt"))
                 .compose(mProvider.bindToLifecycle());
     }
 
     @Override
-    public Observable 配合网络请求配置使用() {
-        return ((TvNetService)(NetUtil.getInstance()
-                .setBaseUrl(TvNetService.baseUrl)
+    public Observable netRequestSet() {
+        TvNetService tvNetService = NetUtil.getInstance()
+                .setBaseUrl(TvNetService.BASE_URL)
                 //设置请求头添加定位信息
                 .setToggleLocationHeader(true)
                 //设置请求api
@@ -154,7 +153,7 @@ public class MainModel extends BaseModel implements IMainContract.Model {
                 //设置是否验证https请求
                 .setToggleHttps(true)
                 //设置https证书
-                .setSSLSocketFactory(SslContextFactory.getSSLSocketFactory(
+                .setSSLSocketFactory(MySslContextFactory.getSSLSocketFactory(
                         NetGlobalConfig.getContext()))
                 //添加自定义的拦截器
                 .addInterceptor(new Interceptor() {
@@ -168,29 +167,28 @@ public class MainModel extends BaseModel implements IMainContract.Model {
                         MediaType mediaType = proceed.body().contentType();
                         Response response = proceed
                                 .newBuilder()
-                                //添加响应拦截, 将响应的code变为500
-                                .code(500)
+                                //添加响应拦截,
                                 .body(ResponseBody.create(mediaType, "我是被拦截的响应值"))
                                 .build();
                         return response;
                     }
                 })
-                .build()))
-                .get无参请求();
+                .build();
+        return tvNetService.noParamsRequest();
     }
 
     @Override
-    public Observable 使用前初始化默认的baseUrl() {
+    public Observable useDefaultBaseurl() {
         return null;
     }
 
     @Override
-    public Observable https证书验证请求() {
+    public Observable httpsRequest() {
         return null;
     }
 
     @Override
-    public Observable 待补充() {
+    public Observable waitAdd() {
         return null;
     }
 

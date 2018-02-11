@@ -6,6 +6,4 @@ package chen.wentong.netapidemo.base;
  */
 public interface IBaseView {
 
-    void setPresenter(BasePresenter<? extends IBaseView> basePresenter);
-
 }

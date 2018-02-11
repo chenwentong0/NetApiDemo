@@ -8,7 +8,6 @@ import com.trello.rxlifecycle2.LifecycleProvider;
  * Created by wentong.chen on 18/1/30.
  * 功能：
  */
-
 public class BaseModel {
     protected LifecycleProvider<Lifecycle.Event> mProvider;
 

@@ -18,12 +18,12 @@ import io.reactivex.functions.Function;
  * 网络请求重试retry条件， Rxjava中的retryWhen操作符配合使用
  */
 public class RetryWhenNetworkException implements Function<Observable<? extends Throwable>, Observable<?>> {
-    //    retry次数
-    private int mCount = 3;
-    //    延迟
-    private long mDelay = 3000;
-    //    叠加延迟
-    private long mIncreaseDelay = 3000;
+    private static final Long DEFAULT_DELAY = 3 * 1000L;
+    private static final int DEFAULT_COUNT = 3;
+    private static final Long DEFAULT_INCREASE_DELAY = 3 * 1000L;
+    private int mCount = DEFAULT_COUNT;                                   //retry次数
+    private long mDelay = DEFAULT_DELAY;                                  //延迟
+    private long mIncreaseDelay = DEFAULT_INCREASE_DELAY;                 //叠加延迟
 
     public RetryWhenNetworkException() {
 
@@ -56,7 +56,8 @@ public class RetryWhenNetworkException implements Function<Observable<? extends 
                                 || wrapper.throwable instanceof SocketTimeoutException
                                 || wrapper.throwable instanceof TimeoutException)
                                 && wrapper.index < mCount + 1) { //如果超出重试次数也抛出错误，否则默认是会进入onCompleted
-                            return Observable.timer(mDelay + (wrapper.index - 1) * mIncreaseDelay, TimeUnit.MILLISECONDS);
+                            return Observable.timer(mDelay
+                                    + (wrapper.index - 1) * mIncreaseDelay, TimeUnit.MILLISECONDS);
 
                         }
                         return Observable.error(wrapper.throwable);
@@ -64,11 +65,14 @@ public class RetryWhenNetworkException implements Function<Observable<? extends 
                 });
     }
 
+    /**
+     * 重试错误信息包装类
+     */
     private class Wrapper {
         private int index;
         private Throwable throwable;
 
-        public Wrapper(Throwable throwable, int index) {
+        Wrapper(Throwable throwable, int index) {
             this.index = index;
             this.throwable = throwable;
         }

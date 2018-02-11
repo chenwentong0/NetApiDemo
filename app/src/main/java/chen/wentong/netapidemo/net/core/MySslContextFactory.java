@@ -16,14 +16,16 @@ import chen.wentong.netapidemo.R;
 /**
  * ssl证书
  */
-public class SslContextFactory {
-    static final String CLIENT_TRUST_PASSWORD = "123456";//信任证书密码，该证书默认密码是123456
-    static final String CLIENT_AGREEMENT = "TLS";//使用协议
+public final class MySslContextFactory {
+    static final String CLIENT_TRUST_PASSWORD = "123456";               //信任证书密码，该证书默认密码是123456
+    static final String CLIENT_AGREEMENT = "TLS";                       //使用协议
     static final String CLIENT_TRUST_KEYSTORE = "BKS";
+
+    private MySslContextFactory() { }
     /**
      * 获取bks文件的sslsocketfactory
-     * @param context
-     * @return
+     * @param context 上下文
+     * @return SSLSocketFactory
      */
     public static SSLSocketFactory getSSLSocketFactory(Context context) {
 
@@ -47,7 +49,7 @@ public class SslContextFactory {
             sslContext.init(null, trustManager.getTrustManagers(), null);
         } catch (Exception e) {
             e.printStackTrace();
-            LogUtils.e("SslContextFactory", e.getMessage());
+            LogUtils.e("MySslContextFactory", e.getMessage());
         }
         return sslContext.getSocketFactory();
     }
